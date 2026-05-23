@@ -25,4 +25,6 @@ public class GlobalExceptionHandler {
 
     }
 
+    //validasiya xetalari  ve gozlenilmeyen sistem xetalari
+
 }
