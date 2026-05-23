@@ -28,10 +28,10 @@ indexes = {
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor //Bosh contrucor
+@AllArgsConstructor //Tam Constructor
+@Builder  //obyektin fieldlerini rahat vermek ucun
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) //include olanin hashcodesini yoxlamaq
 public class User {
 
     @Id
@@ -45,8 +45,8 @@ public class User {
     private String email;
 
     @Column(name = "first_name", nullable = false, length = 50)
-    @NotBlank(message = "First name is required")
-    @Size(min=2, max=50,message = "First name must be between 2 and 50 characters")
+    @NotBlank(message = "First name is required") //boah ola bilmez
+    @Size(min=2, max=50,message = "First name must be between 2 and 50 characters") //olcu
     private String firstName;
 
     @Column(name = "last_name", nullable = false, length = 50)
@@ -62,7 +62,7 @@ public class User {
     @Column(name="born_date")
     private LocalDate bornDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)  //Enum
     @Column(name="gender", length = 10)
     private Gender gender;
 
