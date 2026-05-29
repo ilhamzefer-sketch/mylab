@@ -7,7 +7,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,9 +37,11 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException ex,
             HttpServletRequest request
     ){
-       Map<String,String> validationErrors = new HashMap<>();
+       Map<String, List<String>> validationErrors = new HashMap<>();
        ex.getBindingResult().getFieldErrors().forEach(error ->
-               validationErrors.put(error.getField(), error.getDefaultMessage()));
+               validationErrors
+                       .computeIfAbsent(error.getField(), key -> new ArrayList<>())
+                       .add(error.getDefaultMessage()));
 
        ErrorResponse errorResponse =ErrorResponse.builder()
                .timeStamp(LocalDateTime.now())
@@ -61,7 +65,7 @@ public class GlobalExceptionHandler {
                 .timeStamp(LocalDateTime.now())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
-                .message("Unexpected Internail error")
+                .message("Unexpected Internal error")
                 .path(request.getRequestURI())
                 .build();
 

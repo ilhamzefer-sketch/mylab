@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 
@@ -24,7 +25,7 @@ public class ErrorResponse {
     private String path;
 
     //Sadece  Valid xetasi verende  dolacaq
-    private Map<String, String>validationErrors;
+    private Map<String, List<String>> validationErrors;
 
 
 }

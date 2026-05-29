@@ -81,3 +81,29 @@ Sillabusa uyğun olaraq növbəti addımımız **Mərhələ 2-ni tamamlamaqdır*
 2. `GlobalExceptionHandler`-da validasiya xətalarını tutub front-end üçün səliqəli `validationErrors` map-i doldurmaq.
 
 Başlayaq?
+
+---
+
+## Next Topic For Next Session
+
+Current completed topic:
+- Validation & Global Exception Handling core part is completed.
+- Tested responses:
+  - `201 Created` for successful user registration.
+  - `400 Bad Request` for validation errors.
+  - `409 Conflict` for duplicate email.
+- `validationErrors` now uses `Map<String, List<String>>`, so one field can return multiple validation messages.
+
+Next topic:
+- **Swagger / OpenAPI Documentation**
+
+What to learn next:
+- `@Operation`
+- `@ApiResponse`
+- `@ApiResponses`
+- documenting `201`, `400`, `404`, `409`, `500` responses
+- documenting `ErrorResponse`
+- making Swagger show the real response codes instead of only `200 OK`
+
+Goal:
+- Swagger UI should clearly show successful responses and exception responses for `UserController`.

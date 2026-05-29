@@ -14,7 +14,7 @@ public record UserResponse(
         LocalDate bornDate,
         Gender gender,
         UserStatus userStatus,
-        LocalDateTime createdDAte,
+        LocalDateTime createdDate,
         LocalDateTime lastModifiedDate
 ) {
 }

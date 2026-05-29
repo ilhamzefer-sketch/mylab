@@ -27,7 +27,6 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.springframework.security:spring-security-crypto'
-    implementation 'org.springframework.security:spring-security-crypto:6.3.0'
     implementation 'org.flywaydb:flyway-database-postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
