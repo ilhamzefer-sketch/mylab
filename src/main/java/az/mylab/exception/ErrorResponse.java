@@ -23,6 +23,7 @@ public class ErrorResponse {
     private String error;
     private String message;
     private String path;
+    private String code;
 
     //Sadece  Valid xetasi verende  dolacaq
     private Map<String, List<String>> validationErrors;

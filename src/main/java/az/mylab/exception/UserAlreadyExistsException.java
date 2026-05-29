@@ -12,4 +12,8 @@ public class UserAlreadyExistsException extends RuntimeException{
 
     }
 
+    public ErrorCode getErrorCode() {
+        return errorCode;
+    }
+
 }
