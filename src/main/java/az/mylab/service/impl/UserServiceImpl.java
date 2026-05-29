@@ -4,6 +4,7 @@ package az.mylab.service.impl;
 import az.mylab.entity.User;
 import az.mylab.enums.ErrorCode;
 import az.mylab.exception.ResourceNotFoundException;
+import az.mylab.exception.UserAlreadyExistsException;
 import az.mylab.repository.UserRepository;
 import az.mylab.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user){
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException(ErrorCode.USER_ALREADY_EXISTS);
+        }
+        
         user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
         return userRepository.save(user);
     }

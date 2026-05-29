@@ -8,28 +8,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    // 1. Request DTO-nu -> User Entity-sinə çevirir (Qeydiyyat üçün)
-    public User toEntity(UserRegisterRequest request){
-        if(request==null){
+    public User toEntity(UserRegisterRequest request) {
+        if (request == null) {
             return null;
         }
-        // Entity daxilində @Builder annotasiyası olduğu üçün rahatlıqla istifadə edirik
-        return  User.builder()
-                .email((request.email()))
-                .firstName(request.lastName())
+
+        return User.builder()
+                .email(request.email())
+                .firstName(request.firstName())
                 .lastName(request.lastName())
-                // Parolu bura set edirik, amma hələ şifrələnməyib. Bunu Service-də edəcəyik.
-                .passwordHash((request.password()))
+                .passwordHash(request.password())
                 .bornDate(request.bornDate())
                 .gender(request.gender())
-                // Qeyd: id, status, və audit (createdDate) avtomatik formalaşacaq
                 .build();
     }
 
-    public UserResponse toResponse(User user){
-        if(user==null){
-            return  null;
+    public UserResponse toResponse(User user) {
+        if (user == null) {
+            return null;
         }
+
         return new UserResponse(
                 user.getId(),
                 user.getEmail(),
@@ -40,8 +38,6 @@ public class UserMapper {
                 user.getUserStatus(),
                 user.getCreatedDate(),
                 user.getLastModifiedDate()
-
         );
     }
-
 }
